@@ -38,13 +38,9 @@ typedef NS_ENUM(NSInteger, WJPageControlAlignment) {
 @end
 @interface WJInfiniteScrollView : UIView
 
-/**
- *  是否允许自动轮播，默认不允许
- */
+
 @property (nonatomic, assign) BOOL allowAutomaticScroll;
-/*
- 自动轮播时间
- */
+
 @property (nonatomic, assign) CGFloat scrollDuration;
 
 //可以自定义图片(后期补充)
