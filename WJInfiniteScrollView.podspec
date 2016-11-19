@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint InfiniteScrollView.podspec' to ensure this is a
+#  Be sure to run `pod spec lint WJInfiniteScrollView.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "InfiniteScrollView"
-  s.version      = "0.0.1"
+  s.name         = "WJInfiniteScrollView"
+  s.version      = "0.0.3"
   s.summary      = "Infinite loop, automatic carousel."
 
   # This description is used to generate tags and improve search results.
@@ -24,11 +24,12 @@ Pod::Spec.new do |s|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = <<-DESC
-		    an awesome scroll lib
-                   DESC
+    s.description  = <<-DESC
+    an awesome scroll ,automatic carousellib,very easy to use
+    DESC
 
-  s.homepage     = "https://github.com/ONEWJ/WJInfiniteScrollView"
+    s.homepage     = "https://github.com/ONEWJ/WJInfiniteScrollView"
+
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -65,7 +66,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-    s.platform     = :ios, "8.0"
+  s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -80,7 +81,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/ONEWJ/WJInfiniteScrollView.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/ONEWJ/WJInfiniteScrollView.git", :tag => "0.0.3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -92,7 +93,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "WJInfiniteScrollView", "WJInfiniteScrollView/**/*.{h,m}"
-  #  s.exclude_files = "Classes/Exclude"
+  # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
@@ -130,9 +131,9 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
+  s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+ s.dependency "SDWebImage", "~> 3.8.1"
 
 end

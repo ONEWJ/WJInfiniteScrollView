@@ -27,7 +27,6 @@ static int const ImageViewCount = 3;
     [self updatePoint];
     
 }
-
 -(void)layoutSubviews{
     
     [super layoutSubviews];
@@ -71,6 +70,7 @@ static int const ImageViewCount = 3;
 @interface WJInfiniteScrollView() <UIScrollViewDelegate>
 @property (weak, nonatomic) UIScrollView *scrollView;
 @property (weak, nonatomic) NSTimer *timer;
+@property (nonatomic, weak) WJPageControl *pageControl;
 @end
 
 @implementation WJInfiniteScrollView
@@ -108,18 +108,30 @@ static int const ImageViewCount = 3;
         UIImageView *imageView = [[UIImageView alloc] init];
         [scrollView addSubview:imageView];
     }
-    
-    WJPageControl *pageControl = [[WJPageControl alloc] init];
-    [self addSubview:pageControl];
-    _pageControl = pageControl;
-    
-    pageControl.currentPage = 0;
+    self.pageControl.currentPage = 0;
     self.scrollDuration = 3;
     self.pointMargin = 5;
     self.normalPagePointSize = CGSizeMake(7, 7);
     self.currentPagePointSize = CGSizeMake(34, 7);
 }
 
+#pragma mark - lazy
+-(WJPageControl *)pageControl{
+    
+    if(_pageControl==nil){
+        
+        WJPageControl *pageControl = [[WJPageControl alloc]init];
+        [self addSubview:pageControl];
+        self.pageControl =  pageControl;
+    }
+    return _pageControl;
+    
+}
+    
+#pragma mark - get
+-(WJPageControl *)scrollFlag{
+    return self.pageControl;
+}
 #pragma mark - set
 
 -(void)setPointMargin:(CGFloat)pointMargin{
@@ -156,10 +168,12 @@ static int const ImageViewCount = 3;
 
     _scrollDuration = scrollDuration;
     
-    [self stopTimer];
+    if (self.allowAutomaticScroll && [self.dataSource numberOfImagesInScrollView:self]>1) {
     
-    [self startTimer];
-    
+        [self stopTimer];
+        
+        [self startTimer];
+    }
 }
 
 
@@ -167,7 +181,9 @@ static int const ImageViewCount = 3;
 
     _allowAutomaticScroll = allowAutomaticScroll;
     
-    if (allowAutomaticScroll && !self.timer) {
+    BOOL allowScroll = [self.dataSource numberOfImagesInScrollView:self]>1;
+    
+    if (allowAutomaticScroll && !self.timer && allowScroll) {
         
         [self startTimer];
         
@@ -182,9 +198,13 @@ static int const ImageViewCount = 3;
 
 -(void)setupPageControlFrame{
     
-    self.pageControl.numberOfPages = [self.dataSource numberOfImagesInScrollView:self];
+    NSInteger count  = [self.dataSource numberOfImagesInScrollView:self];
     
-    NSInteger count = self.pageControl.numberOfPages;
+    if (!count) {
+        return;
+    }
+    
+    self.pageControl.numberOfPages = count;
     
     CGFloat pageW = ((count - 1)*(self.pointMargin +self.normalPagePointSize.width))+self.currentPagePointSize.width;
     CGFloat pageH = 20;
@@ -290,7 +310,7 @@ static int const ImageViewCount = 3;
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     
-    if (self.allowAutomaticScroll) {
+    if (self.allowAutomaticScroll && [self.dataSource numberOfImagesInScrollView:self]>1) {
         
         [self startTimer];
     }
@@ -308,6 +328,10 @@ static int const ImageViewCount = 3;
 
 #pragma mark - 内容更新
 - (void)updateContent{
+    
+    if (![self.dataSource numberOfImagesInScrollView:self]) {
+        return;
+    }
     // 设置图片
     for (int i = 0; i<self.scrollView.subviews.count; i++) {
         UIImageView *imageView = self.scrollView.subviews[i];

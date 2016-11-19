@@ -12,6 +12,7 @@
 
 @interface ViewController ()<WJInfiniteScrollViewDataSource,WJInfiniteScrollViewDelegate>
 
+    @property (weak, nonatomic) IBOutlet WJInfiniteScrollView *scrollViewInXIB;
 @property (nonatomic, strong) NSArray *imageUrls;
 @end
 
@@ -19,15 +20,18 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    self.scrollViewInXIB.allowAutomaticScroll = YES;
+    self.scrollViewInXIB.scrollFlag.currentPageIndicatorTintColor = [UIColor blueColor];
+    self.scrollViewInXIB.scrollFlag.pageIndicatorTintColor = [UIColor lightGrayColor];
     
     WJInfiniteScrollView *scrollView = [[WJInfiniteScrollView alloc] init];
+    scrollView.backgroundColor = [UIColor redColor];
     scrollView.dataSource = self;
     scrollView.delegate = self;
     scrollView.frame = CGRectMake(0, 50, self.view.frame.size.width, 200);
-    scrollView.pageControl.currentPageIndicatorTintColor = [UIColor greenColor];
-    scrollView.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    scrollView.scrollFlag.currentPageIndicatorTintColor = [UIColor greenColor];
+    scrollView.scrollFlag.pageIndicatorTintColor = [UIColor whiteColor];
     [self.view addSubview:scrollView];
-    
     self.imageUrls = @[
                        @"http://pic.58pic.com/58pic/13/72/07/55Z58PICKka_1024.jpg",
                        @"http://pic27.nipic.com/20130310/4499633_163759170000_2.jpg",
@@ -36,6 +40,9 @@
                        @"http://pic29.nipic.com/20130515/1391526_115902145000_2.jpg"
                        
                        ];
+    scrollView.allowAutomaticScroll = YES;
+    //数据来了肯定重新要加载下
+    
 }
 
 - (NSInteger)numberOfImagesInScrollView:(WJInfiniteScrollView *)infiniteScrollView{

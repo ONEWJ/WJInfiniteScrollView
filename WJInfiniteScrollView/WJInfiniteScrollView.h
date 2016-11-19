@@ -40,7 +40,6 @@ typedef NS_ENUM(NSInteger, WJPageControlAlignment) {
 
 
 @property (nonatomic, assign) BOOL allowAutomaticScroll;
-
 @property (nonatomic, assign) CGFloat scrollDuration;
 
 //可以自定义图片(后期补充)
@@ -52,11 +51,11 @@ typedef NS_ENUM(NSInteger, WJPageControlAlignment) {
 @property (nonatomic, assign) CGSize currentPagePointSize;
 
 
-@property (weak, nonatomic, readonly) WJPageControl *pageControl;
+@property (weak, nonatomic, readonly) WJPageControl *scrollFlag;
 
-@property (nonatomic, weak) id<WJInfiniteScrollViewDataSource> dataSource;
+@property (nonatomic, weak)IBOutlet id<WJInfiniteScrollViewDataSource> dataSource;
 
-@property (nonatomic, weak) id<WJInfiniteScrollViewDelegate> delegate;
+@property (nonatomic, weak)IBOutlet id<WJInfiniteScrollViewDelegate> delegate;
 
 @property (nonatomic, assign) WJPageControlAlignment pageControlAlignment;
 

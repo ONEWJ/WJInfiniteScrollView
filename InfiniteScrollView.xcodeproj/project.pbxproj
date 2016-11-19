@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		631189661DE09C410053A91F /* WJInfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 631189651DE09C410053A91F /* WJInfiniteScrollView.m */; };
 		636816931D51ED650077955C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 636816921D51ED650077955C /* main.m */; };
 		636816961D51ED650077955C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 636816951D51ED650077955C /* AppDelegate.m */; };
 		636816991D51ED650077955C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636816981D51ED650077955C /* ViewController.m */; };
@@ -15,7 +16,6 @@
 		636816A11D51ED650077955C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6368169F1D51ED650077955C /* LaunchScreen.storyboard */; };
 		636816AC1D51ED650077955C /* InfiniteScrollViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 636816AB1D51ED650077955C /* InfiniteScrollViewTests.m */; };
 		636816B71D51ED650077955C /* InfiniteScrollViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 636816B61D51ED650077955C /* InfiniteScrollViewUITests.m */; };
-		636816C71D51ED9C0077955C /* WJInfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 636816C61D51ED9C0077955C /* WJInfiniteScrollView.m */; };
 		636816CA1D51EE980077955C /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 636816C91D51EE980077955C /* 1.png */; };
 		636816CC1D51EEA60077955C /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 636816CB1D51EEA60077955C /* 0.png */; };
 		636816CE1D51EEB90077955C /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 636816CD1D51EEB90077955C /* 3.png */; };
@@ -55,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		631189641DE09C410053A91F /* WJInfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJInfiniteScrollView.h; sourceTree = "<group>"; };
+		631189651DE09C410053A91F /* WJInfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJInfiniteScrollView.m; sourceTree = "<group>"; };
 		6368168E1D51ED650077955C /* InfiniteScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		636816921D51ED650077955C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		636816941D51ED650077955C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,8 +73,6 @@
 		636816B21D51ED650077955C /* InfiniteScrollViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InfiniteScrollViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		636816B61D51ED650077955C /* InfiniteScrollViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollViewUITests.m; sourceTree = "<group>"; };
 		636816B81D51ED650077955C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		636816C51D51ED9C0077955C /* WJInfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJInfiniteScrollView.h; sourceTree = "<group>"; };
-		636816C61D51ED9C0077955C /* WJInfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJInfiniteScrollView.m; sourceTree = "<group>"; };
 		636816C91D51EE980077955C /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		636816CB1D51EEA60077955C /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
 		636816CD1D51EEB90077955C /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
@@ -134,6 +134,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		631189631DE09C410053A91F /* WJInfiniteScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				631189641DE09C410053A91F /* WJInfiniteScrollView.h */,
+				631189651DE09C410053A91F /* WJInfiniteScrollView.m */,
+			);
+			path = WJInfiniteScrollView;
+			sourceTree = SOURCE_ROOT;
+		};
 		636816851D51ED650077955C = {
 			isa = PBXGroup;
 			children = (
@@ -157,9 +166,9 @@
 		636816901D51ED650077955C /* InfiniteScrollView */ = {
 			isa = PBXGroup;
 			children = (
+				631189631DE09C410053A91F /* WJInfiniteScrollView */,
 				63F492121DDFEEFC0024B746 /* SDWebImage */,
 				636816C81D51EE8F0077955C /* png */,
-				636816C41D51ED890077955C /* WJInfiniteScrollView */,
 				636816941D51ED650077955C /* AppDelegate.h */,
 				636816951D51ED650077955C /* AppDelegate.m */,
 				636816971D51ED650077955C /* ViewController.h */,
@@ -197,15 +206,6 @@
 				636816B81D51ED650077955C /* Info.plist */,
 			);
 			path = InfiniteScrollViewUITests;
-			sourceTree = "<group>";
-		};
-		636816C41D51ED890077955C /* WJInfiniteScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				636816C51D51ED9C0077955C /* WJInfiniteScrollView.h */,
-				636816C61D51ED9C0077955C /* WJInfiniteScrollView.m */,
-			);
-			path = WJInfiniteScrollView;
 			sourceTree = "<group>";
 		};
 		636816C81D51EE8F0077955C /* png */ = {
@@ -397,12 +397,12 @@
 				63F492341DDFEEFC0024B746 /* SDWebImageDownloader.m in Sources */,
 				63F4923C1DDFEEFC0024B746 /* UIImageView+WebCache.m in Sources */,
 				63F492311DDFEEFC0024B746 /* SDImageCache.m in Sources */,
+				631189661DE09C410053A91F /* WJInfiniteScrollView.m in Sources */,
 				636816991D51ED650077955C /* ViewController.m in Sources */,
 				636816961D51ED650077955C /* AppDelegate.m in Sources */,
 				63F492331DDFEEFC0024B746 /* SDWebImageDecoder.m in Sources */,
 				63F4923A1DDFEEFC0024B746 /* UIImage+MultiFormat.m in Sources */,
 				63F492351DDFEEFC0024B746 /* SDWebImageDownloaderOperation.m in Sources */,
-				636816C71D51ED9C0077955C /* WJInfiniteScrollView.m in Sources */,
 				63F492381DDFEEFC0024B746 /* UIButton+WebCache.m in Sources */,
 				63F492371DDFEEFC0024B746 /* SDWebImagePrefetcher.m in Sources */,
 				63F492321DDFEEFC0024B746 /* SDWebImageCompat.m in Sources */,
