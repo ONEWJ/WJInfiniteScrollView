@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "WJInfiniteScrollView"
-  s.version      = "0.0.4"
+  s.version      = "0.0.6"
   s.summary      = "Infinite loop, automatic carousel."
 
   # This description is used to generate tags and improve search results.
@@ -81,7 +81,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/ONEWJ/WJInfiniteScrollView.git", :tag => "0.0.4" }
+  s.source       = { :git => "https://github.com/ONEWJ/WJInfiniteScrollView.git", :tag => "0.0.6" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
