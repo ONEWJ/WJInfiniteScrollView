@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    [self.scrollViewInXIB removeFromSuperview];
     self.scrollViewInXIB.allowAutomaticScroll = YES;
     self.scrollViewInXIB.scrollFlag.currentPageIndicatorTintColor = [UIColor blueColor];
     self.scrollViewInXIB.scrollFlag.pageIndicatorTintColor = [UIColor lightGrayColor];

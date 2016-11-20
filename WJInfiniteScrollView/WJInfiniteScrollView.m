@@ -10,12 +10,14 @@
 #import "UIImageView+WebCache.h"
 static int const ImageViewCount = 3;
 
+typedef void(^ScrollToCurrentPage)(NSUInteger);
 @interface WJPageControl()
 @property (nonatomic, copy) NSString *currentImageName;
 @property (nonatomic, copy) NSString *normalImageName;
 @property (nonatomic, assign) CGFloat pointMargin;
 @property (nonatomic, assign) CGSize normalPagePointSize;
 @property (nonatomic, assign) CGSize currentPagePointSize;
+@property (nonatomic, copy) ScrollToCurrentPage scrollToPage ;
 @end
 
 @implementation WJPageControl
@@ -24,8 +26,10 @@ static int const ImageViewCount = 3;
     
     [super setCurrentPage:currentPage];
     
+    if (currentPage>=0) {
+        self.scrollToPage(currentPage);
+    }
     [self updatePoint];
-    
 }
 -(void)layoutSubviews{
     
@@ -108,7 +112,6 @@ static int const ImageViewCount = 3;
         UIImageView *imageView = [[UIImageView alloc] init];
         [scrollView addSubview:imageView];
     }
-    self.pageControl.currentPage = 0;
     self.scrollDuration = 3;
     self.pointMargin = 5;
     self.normalPagePointSize = CGSizeMake(7, 7);
@@ -121,11 +124,15 @@ static int const ImageViewCount = 3;
     if(_pageControl==nil){
         
         WJPageControl *pageControl = [[WJPageControl alloc]init];
+        pageControl.scrollToPage = ^(NSUInteger currentPage){
+            if ([self.delegate respondsToSelector:@selector(infiniteScrollView:didScrollToIndex:)]) {
+                [self.delegate infiniteScrollView:self didScrollToIndex:currentPage];
+            }
+        };
         [self addSubview:pageControl];
         self.pageControl =  pageControl;
     }
     return _pageControl;
-    
 }
     
 #pragma mark - get
@@ -296,10 +303,6 @@ static int const ImageViewCount = 3;
     }
     if (self.pageControl.currentPage!=page) {
         self.pageControl.currentPage = page;
-        
-        if ([self.delegate respondsToSelector:@selector(infiniteScrollView:didScrollToIndex:)]) {
-            [self.delegate infiniteScrollView:self didScrollToIndex:page];
-        }
     }
     
 }
