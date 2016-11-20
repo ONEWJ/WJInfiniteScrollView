@@ -124,8 +124,6 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     if(_pageControl==nil){
         
         WJPageControl *pageControl = [[WJPageControl alloc]init];
-        
-        __weak typeof (self) weakSelf = self;
         pageControl.scrollToPage = ^(NSUInteger currentPage){
             //            weakSelf.currentPage = currentPage;
             if ([self.delegate respondsToSelector:@selector(infiniteScrollView:didScrollToIndex:)]) {
