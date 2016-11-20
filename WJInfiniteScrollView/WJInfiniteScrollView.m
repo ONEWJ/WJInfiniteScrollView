@@ -36,36 +36,34 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     [super layoutSubviews];
     
     [self updatePoint];
-    
-    
 }
 -(void)updatePoint{
     
     CGFloat centerX = 0;
-
+    
     CGFloat centerY = self.frame.size.height/2.0;
-
+    
     for (NSUInteger i=0; i<self.subviews.count; i++) {
-
+        
         UIView *point = self.subviews[i];
-
+        
         CGSize size = CGSizeZero;
-
+        
         if (i==self.currentPage) {
-
+            
             size = self.currentPagePointSize;
-
+            
         }else{
-
+            
             size = self.normalPagePointSize;
         }
-
+        
         centerX+=size.width/2.0;
-
-
+        
+        
         point.frame = (CGRect){0,0,size};
         point.center = CGPointMake(centerX, centerY);
-
+        
         centerX = CGRectGetMaxX(point.frame)+self.pointMargin;
     }
 }
@@ -75,6 +73,7 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
 @property (weak, nonatomic) UIScrollView *scrollView;
 @property (weak, nonatomic) NSTimer *timer;
 @property (nonatomic, weak) WJPageControl *pageControl;
+//@property (nonatomic, assign) NSUInteger currentPage;
 @end
 
 @implementation WJInfiniteScrollView
@@ -88,13 +87,14 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     }
     return self;
 }
-
--(void)awakeFromNib{
-    
-    [super awakeFromNib];
-    
-    [self setupContentView];
-    
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        
+        [self setupContentView];
+    }
+    return self;
 }
 
 -(void)setupContentView{
@@ -124,7 +124,10 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     if(_pageControl==nil){
         
         WJPageControl *pageControl = [[WJPageControl alloc]init];
+        
+        __weak typeof (self) weakSelf = self;
         pageControl.scrollToPage = ^(NSUInteger currentPage){
+            //            weakSelf.currentPage = currentPage;
             if ([self.delegate respondsToSelector:@selector(infiniteScrollView:didScrollToIndex:)]) {
                 [self.delegate infiniteScrollView:self didScrollToIndex:currentPage];
             }
@@ -134,7 +137,7 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     }
     return _pageControl;
 }
-    
+
 #pragma mark - get
 -(WJPageControl *)scrollFlag{
     return self.pageControl;
@@ -142,18 +145,18 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
 #pragma mark - set
 
 -(void)setPointMargin:(CGFloat)pointMargin{
-
+    
     _pointMargin = pointMargin;
     
     self.pageControl.pointMargin = pointMargin;
     
 }
 -(void)setNormalPagePointSize:(CGSize)normalPagePointSize{
-
+    
     _normalPagePointSize = normalPagePointSize;
     
     self.pageControl.normalPagePointSize = normalPagePointSize;
-
+    
 }
 
 -(void)setCurrentPagePointSize:(CGSize)currentPagePointSize{
@@ -161,7 +164,7 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     _currentPagePointSize = currentPagePointSize;
     
     self.pageControl.currentPagePointSize = currentPagePointSize;
-
+    
 }
 
 -(void)setPageControlAlignment:(WJPageControlAlignment)pageControlAlignment{
@@ -172,11 +175,11 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
 }
 
 -(void)setScrollDuration:(CGFloat)scrollDuration{
-
+    
     _scrollDuration = scrollDuration;
     
     if (self.allowAutomaticScroll && [self.dataSource numberOfImagesInScrollView:self]>1) {
-    
+        
         [self stopTimer];
         
         [self startTimer];
@@ -185,7 +188,7 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
 
 
 -(void)setAllowAutomaticScroll:(BOOL)allowAutomaticScroll{
-
+    
     _allowAutomaticScroll = allowAutomaticScroll;
     
     BOOL allowScroll = [self.dataSource numberOfImagesInScrollView:self]>1;
@@ -198,7 +201,7 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
         
         [self stopTimer];
     }
-
+    
 }
 
 #pragma mark - 布局
@@ -261,7 +264,6 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     if (self.pageControl.numberOfPages ==1) {
         self.scrollView.scrollEnabled = NO;
     }
-    
     [self updateContent];
 }
 
@@ -289,7 +291,7 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
 
 #pragma mark - <UIScrollViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
+    
     NSInteger page = 0;
     CGFloat minDistance = MAXFLOAT;
     for (int i = 0; i<self.scrollView.subviews.count; i++) {
@@ -319,13 +321,11 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     [self updateContent];
 }
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
     [self updateContent];
 }
 
@@ -335,7 +335,7 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     if (![self.dataSource numberOfImagesInScrollView:self]) {
         return;
     }
-    // 设置图片
+    
     for (int i = 0; i<self.scrollView.subviews.count; i++) {
         UIImageView *imageView = self.scrollView.subviews[i];
         NSInteger index = self.pageControl.currentPage;
@@ -362,5 +362,24 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
         [imageView sd_setImageWithURL:[self.dataSource imageUrlInInfiniteScrollView:self atIndex:index] placeholderImage:image];
     }
     self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width, 0);
+}
+
+-(void)reloadData{
+    
+    [self setupPageControlFrame];
+    
+    NSUInteger count = [self.dataSource numberOfImagesInScrollView:self];
+    self.pageControl.numberOfPages = count;
+    [self stopTimer];
+    
+    if (self.allowAutomaticScroll && [self.dataSource numberOfImagesInScrollView:self]>1) {
+        
+        [self startTimer];
+    }
+    
+    self.pageControl.currentPage = 0;
+    
+    [self updateContent];
+    
 }
 @end

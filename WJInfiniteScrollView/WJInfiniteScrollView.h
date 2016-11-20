@@ -59,5 +59,5 @@ typedef NS_ENUM(NSInteger, WJPageControlAlignment) {
 
 @property (nonatomic, assign) WJPageControlAlignment pageControlAlignment;
 
-
+-(void)reloadData;
 @end
