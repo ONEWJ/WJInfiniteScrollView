@@ -110,6 +110,10 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     
     for (int i = 0; i<ImageViewCount; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageViewClick:)];
+        [imageView addGestureRecognizer:tap];
         [scrollView addSubview:imageView];
     }
     self.scrollDuration = 3;
@@ -379,5 +383,12 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     
     [self updateContent];
     
+}
+
+-(void)imageViewClick:(UITapGestureRecognizer *)tap{
+    UIView *view = tap.view;//self.pageControl.currentPage
+    if ([self.delegate respondsToSelector:@selector(infiniteScrollView:didClickAtIndex:)]) {
+        [self.delegate infiniteScrollView:self didClickAtIndex:view.tag];
+    }
 }
 @end

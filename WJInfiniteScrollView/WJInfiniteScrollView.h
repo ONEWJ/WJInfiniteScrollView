@@ -33,6 +33,8 @@ typedef NS_ENUM(NSInteger, WJPageControlAlignment) {
 
 - (void)infiniteScrollView:(WJInfiniteScrollView *)infiniteScrollView didScrollToIndex:(NSInteger )index;
 
+- (void)infiniteScrollView:(WJInfiniteScrollView *)infiniteScrollView didClickAtIndex:(NSInteger )index;
+
 @end
 @interface WJPageControl : UIPageControl
 @end
