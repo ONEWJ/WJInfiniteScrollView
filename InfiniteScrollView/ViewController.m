@@ -63,7 +63,6 @@
     return [NSURL URLWithString:urlStr];
 
 }
-//- (NSString *)placeholderImageNameInInfiniteScrollView:(WJInfiniteScrollView *)infiniteScrollView{
-//    return nil;
+//- (UIImage *)placeholderImageInInfiniteScrollView:(WJInfiniteScrollView *)infiniteScrollView{
 //}
 @end

@@ -111,7 +111,8 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     for (int i = 0; i<ImageViewCount; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.userInteractionEnabled = YES;
-        
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageViewClick:)];
         [imageView addGestureRecognizer:tap];
         [scrollView addSubview:imageView];
@@ -355,9 +356,9 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
         
         UIImage *image = nil;
         
-        if ([self.dataSource respondsToSelector:@selector(placeholderImageNameInInfiniteScrollView:)]) {
+        if ([self.dataSource respondsToSelector:@selector(placeholderImageInInfiniteScrollView:)]) {
             
-            image = [UIImage imageNamed:[self.dataSource placeholderImageNameInInfiniteScrollView:self]];
+            image = [self.dataSource placeholderImageInInfiniteScrollView:self];
             
         }
         

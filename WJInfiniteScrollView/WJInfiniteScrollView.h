@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, WJPageControlAlignment) {
 
 @optional
 
-- (NSString *)placeholderImageNameInInfiniteScrollView:(WJInfiniteScrollView *)infiniteScrollView;
+- (UIImage *)placeholderImageInInfiniteScrollView:(WJInfiniteScrollView *)infiniteScrollView;
 @end
 
 @protocol WJInfiniteScrollViewDelegate <NSObject>
