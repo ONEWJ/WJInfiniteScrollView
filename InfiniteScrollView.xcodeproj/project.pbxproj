@@ -324,7 +324,7 @@
 					6368168D1D51ED650077955C = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = BJQR73S3QJ;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					636816A61D51ED650077955C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -560,8 +560,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yiju.jiaoshi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d48e7989-03fc-49d1-a04c-87ec59851312";
-				PROVISIONING_PROFILE_SPECIFIER = SZJS_Development;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -569,15 +569,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = BJQR73S3QJ;
 				INFOPLIST_FILE = InfiniteScrollView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yiju.jiaoshi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "452e6282-1c7a-4d52-8960-743bb53223e4";
-				PROVISIONING_PROFILE_SPECIFIER = SZJS_Distribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
