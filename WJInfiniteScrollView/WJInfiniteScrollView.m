@@ -269,6 +269,48 @@ typedef void(^ScrollToCurrentPage)(NSUInteger);
     }
     [self updateContent];
 }
+/*
+ 层叠滑动效果
+ 
+ - (void)layoutSubviews{
+ [super layoutSubviews];
+ 
+ self.scrollView.frame = self.bounds;
+ self.scrollView.contentSize = CGSizeMake(ImageViewCount * self.bounds.size.width, 0);
+ 
+ CGFloat Y0 = 15;
+ 
+ CGFloat H0 = self.scrollView.frame.size.height -30;
+ CGFloat W0 = H0 * self.scrollView.frame.size.width/self.scrollView.frame.size.height;
+ CGFloat X0 = self.scrollView.frame.size.width + 15 - W0;
+ 
+ for (int i = 0; i<ImageViewCount; i++) {
+ UIImageView *imageView = self.scrollView.subviews[i];
+ 
+ 
+ if (i == 0) {
+ 
+ imageView.frame = CGRectMake(X0, Y0, W0, H0);
+ 
+ }else if(i == 1){
+ imageView.frame = CGRectMake(30 + self.scrollView.frame.size.width, 0, self.scrollView.frame.size.width - 60, self.scrollView.frame.size.height);
+ 
+ }else if(i == 2){
+ imageView.frame = CGRectMake(2*self.scrollView.frame.size.width - 15, 15, W0, H0);
+ 
+ }
+ }
+ 
+ [self setupPageControlFrame];
+ 
+ if (self.pageControl.numberOfPages ==1) {
+ self.scrollView.scrollEnabled = NO;
+ }
+ [self updateContent];
+ }
+
+ 
+ */
 
 #pragma mark - 定时器处理
 - (void)startTimer{
