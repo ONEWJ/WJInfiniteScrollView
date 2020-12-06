@@ -59,7 +59,6 @@
 - (NSURL *)imageUrlInInfiniteScrollView:(WJInfiniteScrollView *)infiniteScrollView atIndex:(NSInteger )index{
     
     NSString *urlStr = self.imageUrls[index];
-    
     return [NSURL URLWithString:urlStr];
 
 }
