@@ -52,7 +52,7 @@
 }
 
 - (void)infiniteScrollView:(WJInfiniteScrollView *)infiniteScrollView didScrollToIndex:(NSInteger )index{
-    
+    //试一下
     NSLog(@"%zd",index);
     
 }
