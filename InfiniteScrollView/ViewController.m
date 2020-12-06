@@ -29,7 +29,7 @@
     scrollView.backgroundColor = [UIColor redColor];
     scrollView.dataSource = self;
     scrollView.delegate = self;
-    scrollView.frame = CGRectMake(0, 50, self.view.frame.size.width, 200);
+    scrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, 200);
     scrollView.scrollFlag.currentPageIndicatorTintColor = [UIColor greenColor];
     scrollView.scrollFlag.pageIndicatorTintColor = [UIColor whiteColor];
     [self.view addSubview:scrollView];
